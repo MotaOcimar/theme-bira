@@ -1,6 +1,3 @@
-# Theme based on Bira theme from oh-my-zsh: https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/bira.zsh-theme
-# Some code stolen from oh-my-fish clearance theme: https://github.com/bpinto/oh-my-fish/blob/master/themes/clearance/
-
 function __user_host
   set -l content 
   if [ (id -u) = "0" ];
@@ -20,7 +17,7 @@ function __git_status
   set -l ahead    "🡑"
   set -l behind   "🡓"
   set -l diverged "⇅"
-  set -l none     "🗸"
+  set -l none     "🗸 "
 
   if [ (git_branch_name) ]
     if git_is_touched
