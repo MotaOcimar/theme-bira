@@ -12,7 +12,7 @@ function __user_host
 end
 
 function __current_path
-  echo -n (set_color --bold blue) (dirs) (set_color normal) 
+  echo -n (set_color --bold blue)(dirs) (set_color normal) 
 end
 
 function __git_status
@@ -22,11 +22,12 @@ function __git_status
   set -l diverged "⥄ "
   set -l none     "◦"
 
+
   if [ (git_branch_name) ]
     if git_is_touched
-      set git_info '['(git_branch_name)']'$dirty
+      set git_info '['(git_branch_name)']'$dirty
     else
-      set git_info '['(git_branch_name)']'(git_ahead $ahead $behind $diverged $none)
+      set git_info '['(git_branch_name)']'(git_ahead $ahead $behind $diverged $none)
     end
 
     echo -n (set_color yellow)$git_info(set_color normal) 
@@ -39,8 +40,9 @@ function fish_prompt
   if [ $st != 0 ];
     echo (set_color red --bold)'['↵ $st']'(set_color normal)
   end
-  echo -n (set_color white)"╭─"(set_color normal)
+  echo -n (set_color white)"╭─["(set_color normal)
   __user_host
+  echo -n (set_color normal)"] "
   __current_path
   __git_status
   echo -e ''
