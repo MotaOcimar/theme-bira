@@ -36,11 +36,11 @@ function fish_prompt
   if [ $st != 0 ];
     echo (set_color red --bold)'['↵ $st']'(set_color normal)
   end
-  echo -n (set_color white)"╭─["(set_color normal)
+  echo -n (set_color white)"╭"(set_color normal)
   __user_host
-  echo -n (set_color normal)"] "
+  echo -n (set_color normal)" "
   __current_path
   __git_status
   echo -e ''
-  echo (set_color white)"╰─"(set_color --bold white)"\$ "(set_color normal)
+  echo -e (set_color white)"╰⮞ "(set_color normal) # Suggestions: \$, >, ᗒ, ᐅ, ⮞
 end
