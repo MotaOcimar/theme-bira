@@ -22,7 +22,6 @@ function __git_status
   set -l diverged "⥄ "
   set -l none     "◦"
 
-
   if [ (git_branch_name) ]
     if git_is_touched
       set git_info '['(git_branch_name)']'$dirty
@@ -30,7 +29,7 @@ function __git_status
       set git_info '['(git_branch_name)']'(git_ahead $ahead $behind $diverged $none)
     end
 
-    echo -n (set_color yellow) $git_info (set_color normal) 
+    echo -n (set_color yellow)$git_info(set_color normal) 
   end
 end
 
