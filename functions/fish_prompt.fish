@@ -15,22 +15,19 @@ function __current_path
   echo -n (set_color --bold blue) (dirs) (set_color normal) 
 end
 
-function _git_branch_name
-  echo (command git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
-end
-
-function _git_is_dirty
-  echo (command git status -s --ignore-submodules=dirty 2> /dev/null)
-end
-
 function __git_status
-  if [ (_git_branch_name) ]
-    set -l git_branch (_git_branch_name)
+  set -l dirty    "⨯"
+  set -l ahead    "↑"
+  set -l behind   "↓"
+  set -l diverged "⥄ "
+  set -l none     "◦"
 
-    if [ (_git_is_dirty) ]
-      set git_info '['$git_branch"*"']'
+
+  if [ (git_branch_name) ]
+    if git_is_touched
+      set git_info '['(git_branch_name)']'$dirty
     else
-      set git_info '['$git_branch']'
+      set git_info '['(git_branch_name)']'(git_ahead $ahead $behind $diverged $none)
     end
 
     echo -n (set_color yellow) $git_info (set_color normal) 
