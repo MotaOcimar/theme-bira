@@ -16,18 +16,17 @@ function __current_path
 end
 
 function __git_status
-  set -l dirty    "⨯"
-  set -l ahead    "↑"
-  set -l behind   "↓"
-  set -l diverged "⥄ "
-  set -l none     "◦"
-
+  set -l touched  "🖉 "
+  set -l ahead    "🡑"
+  set -l behind   "🡓"
+  set -l diverged "⇅"
+  set -l none     "🗸"
 
   if [ (git_branch_name) ]
     if git_is_touched
-      set git_info '['(git_branch_name)']'$dirty
+      set git_info '⎇ ['(git_branch_name)']'$touched
     else
-      set git_info '['(git_branch_name)']'(git_ahead $ahead $behind $diverged $none)
+      set git_info '⎇ ['(git_branch_name)']'(git_ahead $ahead $behind $diverged $none)
     end
 
     echo -n (set_color yellow)$git_info(set_color normal) 
