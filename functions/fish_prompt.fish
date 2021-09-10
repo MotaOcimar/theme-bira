@@ -12,6 +12,7 @@ function __current_path
   echo -n (set_color --bold blue)(dirs)(set_color normal) 
 end
 
+
 function __git_status
   set -l touched  "🖉 "
   set -l ahead    "🡑"
@@ -30,6 +31,7 @@ function __git_status
   end
 end
 
+
 function __upper_left
   echo -n (set_color white)"╭╴"(set_color normal) # Suggestion: ╭╴, ┌╴
   __user_host
@@ -39,14 +41,16 @@ function __upper_left
   __git_status
 end
 
+
 function __upper_right
   set -l upper_right_text (date "+%H:%M:%S")
   set -l new_position (math $COLUMNS - (expr length $upper_right_text))
   
   set_color $fish_color_autosuggestion 2> /dev/null; or set_color 555
-  tput cuf $new_position; echo $upper_right_text
+  tput cuf $new_position; echo -n $upper_right_text
   set_color normal
 end
+
 
 function fish_prompt
   set -l st $status
@@ -55,8 +59,9 @@ function fish_prompt
   end
 
   tput sc # Save the cursor position
-  __upper_left
-  tput rc # Restore the cursor position
   __upper_right
-  echo -e (set_color white)"╰> "(set_color normal) # Suggestions: ╰, └ && \$, >, ᗒ, ᐅ, ⮞, ❯
+  tput rc # Restore the cursor position
+  __upper_left
+  echo ""
+  echo (set_color white)"╰> "(set_color normal) # Suggestions: ╰, └ && \$, >, ᗒ, ᐅ, ⮞, ❯
 end
