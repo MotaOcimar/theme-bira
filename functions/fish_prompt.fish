@@ -49,6 +49,7 @@ function __upper_right
   set_color $fish_color_autosuggestion 2> /dev/null; or set_color 555
   tput cuf $new_position; echo -n $upper_right_text
   set_color normal
+  tput cub $COLUMNS
 end
 
 
@@ -58,9 +59,7 @@ function fish_prompt
     echo (set_color red --bold)'['↵ $st']'(set_color normal)
   end
 
-  tput sc # Save the cursor position
   __upper_right
-  tput rc # Restore the cursor position
   __upper_left
   echo ""
   echo (set_color white)"╰> "(set_color normal) # Suggestions: ╰, └ && \$, >, ᗒ, ᐅ, ⮞, ❯
