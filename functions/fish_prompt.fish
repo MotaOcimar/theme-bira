@@ -62,5 +62,5 @@ function fish_prompt
   __upper_right
   __upper_left
   echo ""
-  echo (set_color white)"╰> "(set_color normal) # Suggestions: ╰, └ && \$, >, ᗒ, ᐅ, ⮞, ❯
+  echo (set_color white)"╰>"(set_color normal) # Suggestions: ╰, └ && \$, >, ＞, ᗒ, ᐅ, ⮞, ❯, ≫, ⪧
 end
