@@ -17,15 +17,15 @@ function __git_status
   set -l editing  "🖉 "
   set -l ahead    "🡑"
   set -l behind   "🡓"
-  set -l diverged "⇅"
+  set -l diverged "⇅ "
   set -l none     "🗸 "
   set -l untracked_files (git_untracked)
 
   if [ (git_branch_name) ]
     if git_is_touched; or test -n "$untracked_files"
-      set git_info '🜉 '(git_branch_name)' '$editing
+      set git_info '🜉 '(git_branch_name)' '(git_ahead "$ahead $editing" "$behind $editing" "$diverged $editing" "$editing")      
     else
-      set git_info '🜉 '(git_branch_name)' '(git_ahead $ahead $behind $diverged $none)
+      set git_info '🜉 '(git_branch_name)' '(git_ahead "$ahead" "$behind" "$diverged" "$none")
     end
 
     echo -n (set_color yellow)$git_info(set_color normal) 
