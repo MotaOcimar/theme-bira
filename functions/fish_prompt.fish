@@ -1,11 +1,10 @@
 function __user_host
-  set -l content 
-  if [ (id -u) = "0" ];
-    echo -n (set_color --bold red)
+  if set -q SSH_CLIENT; or set -q SSH_TTY
+    echo -n (set_color --bold yellow)$USER(set_color --bold red)
   else
-    echo -n (set_color --bold green)
+    echo -n (set_color --bold green)$USER
   end
-  echo -n $USER@(hostname|cut -d . -f 1) (set color normal)
+  echo -n @(hostname|cut -d . -f 1) (set color normal)
 end
 
 function __current_path
